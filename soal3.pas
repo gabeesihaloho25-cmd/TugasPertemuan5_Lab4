@@ -1,38 +1,45 @@
-program mengurutkan_nilai_mahasiswa;                 
-uses crt;                             
+program UrutNilaiUAS;                 
+
+uses crt;                           
+
 var
-  nilai: array[1..10] of integer;     // array untuk menyimpan nilai maks 10 mahasiswa
-  n, i, j, temp: integer;             
+  nilai: array[1..10] of integer;     // array untuk menyimpan nilai 10 mahasiswa
+  n, i, j, temp: integer;             // deklarasi variabel
 
 begin
-  clrscr;                             
+  clrscr;                            
 
   write('Masukkan jumlah mahasiswa (1-10): ');
   readln(n);                          // membaca jumlah mahasiswa
 
-  for i := 1 to n do                  // perulangan input nilai
+  for i := 1 to n do                // perulangan untuk memasukkan nilai
   begin
     write('Masukkan nilai UAS mahasiswa ke-', i, ': ');
-    readln(nilai[i]);                // penyimpan nilai ke dalam array
+    readln(nilai[i]);                 // menyimpan nilai ke dalam array
   end;
-  // Proses pengurutan dari terkecil ke terbesar
-  for i := 1 to n-1 do
+
+  // Proses pengurutan nilai dari terkecil ke terbesar
+  for i := 1 to n-1 do              // perulangan pertama untuk menentukan posisi
   begin
-    for j := i+1 to n do
+    for j := i+1 to n do              // perulangan kedua untuk membandingkan nilai
     begin
-      if nilai[i] > nilai[j] then    // membandingkan dua nilai
+      if nilai[i] > nilai[j] then;  // jika nilai pertama lebih besar
       begin
-        temp := nilai[i];            // menyimpan nilai sementara
-        nilai[i] := nilai[j];        // menukar posisi nilai
-        nilai[j] := temp;            // memindahkan nilai sementara
-      end;
-    end;
-  end;
-  writeln;
-  writeln('Nilai mahasiswa setelah diurutkan:');
-  for i := 1 to n do                 // perulangan menampilkan hasil
+        temp := nilai[i];             // menyimpan nilai pertama sementara
+       nilai[i] := nilai[j];       // mengganti nilai pertama dengan nilai kedua
+        nilai[j] := temp;             // memindahkan nilai sementara ke posisi kedua
+      end;                         // mengakhiri kondisi IF
+    end;                              // mengakhiri perulangan kedua
+  end;                             // mengakhiri perulangan pertama
+
+  writeln;                            
+  writeln('===== HASIL PENGURUTAN NILAI ====='); 
+
+  for i := 1 to n do                  // perulangan untuk menampilkan hasil
   begin
-    writeln('Mahasiswa ke-', i, ': ', nilai[i]);
-  end;
-  readln;                          
-end.                               
+    writeln('Mahasiswa ke-', i, ': ', nilai[i]);   // menampilkan nomor dan nilai mahasiswa
+                                        
+  end;                                // mengakhiri perulangan output
+
+  readln;                             
+end.                                  
